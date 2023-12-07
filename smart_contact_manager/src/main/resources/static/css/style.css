@@ -14,6 +14,15 @@ body {
 }
 
 /* Signup Page */
+.about-section {
+  flex-direction: column;
+  width: 100%;
+  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)),
+    url("../images/contact-bg.jpg");
+  background-size: cover;
+  padding-bottom: 20px;
+}
+
 .register-card {
   padding: 20px;
   background-color: #fff;

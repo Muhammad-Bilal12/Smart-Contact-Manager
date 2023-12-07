@@ -111,4 +111,11 @@ public class User {
         this.enabled = enabled;
     }
 
+    @Override
+    public String toString() {
+        return "User [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", imageUrl="
+                + imageUrl + ", about=" + about + ", role=" + role + ", enabled=" + enabled + ", contacts=" + contacts
+                + "]";
+    }
+
 }
