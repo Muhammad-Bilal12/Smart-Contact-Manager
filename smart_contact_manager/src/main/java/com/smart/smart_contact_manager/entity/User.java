@@ -32,6 +32,9 @@ public class User {
 
     @Column(unique = true)
     private String email;
+
+    @Size(min = 8, message = "password must be 8 characters long.")
+    @NotBlank(message = "Password Feild is required!")
     private String password;
     private String imageUrl;
 
