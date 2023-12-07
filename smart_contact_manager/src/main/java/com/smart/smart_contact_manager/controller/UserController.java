@@ -14,7 +14,7 @@ import com.smart.smart_contact_manager.entity.User;
 @Controller
 public class UserController {
 
-    @GetMapping("/home")
+    @GetMapping("/")
     public String home(Model model) {
         model.addAttribute("title", "Home - Smart Contact Manager");
         return "home";
@@ -24,6 +24,12 @@ public class UserController {
     public String about(Model model) {
         model.addAttribute("title", "About - Smart Contact Manager");
         return "about";
+    }
+
+    @GetMapping("/signup")
+    public String signup(Model model) {
+        model.addAttribute("title", "Register - Smart Contact Manager");
+        return "signup";
     }
 
 }
