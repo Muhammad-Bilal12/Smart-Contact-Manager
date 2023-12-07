@@ -1,8 +1,11 @@
 package com.smart.smart_contact_manager.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,7 +44,7 @@ public class UserController {
 
     // handling user Registration form
     @PostMapping("/do_register")
-    public String postMethodName(@ModelAttribute("user") User user,
+    public String postMethodName(@Valid @ModelAttribute("user") User user, BindingResult bindingResult,
             @RequestParam(value = "agreement", defaultValue = "false") boolean agreement, Model model,
             HttpSession session) {
 
@@ -50,6 +53,13 @@ public class UserController {
                 System.out.println("Please Accept our terms and conditions");
                 throw new Exception("Please Accept our terms and conditions");
             }
+
+            if (bindingResult.hasErrors()) {
+                System.out.println("ERROR" + bindingResult.toString());
+                model.addAttribute("user", user);
+                return "signup";
+            }
+
             user.setEnabled(true);
             user.setImageUrl("default.png");
             user.setRole("ROLE_USER");
@@ -58,8 +68,8 @@ public class UserController {
             System.out.println(user);
             System.out.println(agreement);
 
-            User result = this.userRepository.save(user);
-            model.addAttribute("user", result);
+            User uResult = this.userRepository.save(user);
+            model.addAttribute("user", uResult);
 
             session.setAttribute("message", new Message("Successfully Registered!", "alert-success"));
         } catch (Exception e) {

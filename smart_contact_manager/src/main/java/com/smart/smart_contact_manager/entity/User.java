@@ -12,6 +12,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "user")
@@ -24,6 +26,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    @NotBlank(message = "Name Feild is required!")
+    @Size(min = 2, max = 25, message = "Name must be between 2 to 25 characters long")
     private String name;
 
     @Column(unique = true)

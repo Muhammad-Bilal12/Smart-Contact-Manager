@@ -37,6 +37,8 @@
               </div>
               <h1 class="text-center">Register Here</h1>
               <form
+                class="needs-validation"
+                novalidate
                 th:action="@{/do_register}"
                 method="post"
                 th:object="${user}"
@@ -52,8 +54,14 @@
                     placeholder="Enter Here"
                     class="form-control"
                     id="name_feild"
+                    th:classappend="${#fields.hasErrors('name')} ? 'is-invalid' : ''"
                     aria-describedby="nameHelp"
                   />
+                  <div
+                    class="invalid-feedback"
+                    th:each="e : ${#fields.errors('name')}"
+                    th:text="${e}"
+                  ></div>
                 </div>
                 <!-- Email Feild -->
                 <div class="mb-3">
